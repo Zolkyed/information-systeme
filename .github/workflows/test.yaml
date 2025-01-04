@@ -1,0 +1,23 @@
+name: Get System Info
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  get-system-info:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up PowerShell
+      uses: actions/setup-powershell@v2
+
+    - name: Run PowerShell 
+      shell: pwsh
+      run: |
+        Invoke-WebRequest -Uri "https://raw.githubusercontent.com/yourusername/yourrepository/main/Get-SystemInfo.ps1" -OutFile "Get-SystemInfo.ps1"
+        .\Get-SystemInfo.ps1
